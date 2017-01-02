@@ -1,0 +1,49 @@
+<div id="eventsLog" class="modal" tabindex="-1" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Events Log</h4>
+      </div>
+        <div class="trade-display-header" ng-bind-html="title">
+        </div>
+      <div class="modal-body" style="min-width: 755px;">
+        <div class="topEvents" style="width: 750px;">
+            <datatable-instance table-id="eventTable" table-structure="eventTableStructure" callback-function="getEvents(thisTable)" row-select-function="eventTableSelectRow(row)"></datatable-instance>
+ 		</div>
+ 		
+        <div class="bottomEvents" style="margin-top:12px;width:750px;">
+        	<div ng-switch="fixMsgFormat" style="height:170px;overflow-y:auto;overflow-x:hidden;width:100%;">
+            	
+            	<div ng-switch-when="none" readonly id="eventMessage" style="text-align: center;margin-top:50px;">
+            		No FIX message for this event.
+            	</div>
+            	<textarea ng-switch-when="raw" readonly id="eventMessage" style="height:150px;width:740px;">{{rawFixMsg}}</textarea>
+	            
+	            <div ng-switch-when="parsed" style="margin-right:auto;margin-left:auto;width: 600px;">
+		            <datatable-instance cellspacing="0" cellpadding="0" border="0"
+						datatable-instance table-id="messageDetailTable" table-structure="messageDisplayTableStructure" table-data="parsedFixMsg"
+						class="table table-bordered" style="width: 750px;">
+					</datatable-instance>
+	            </div>
+	            
+	            <!-- 
+	             <table ng-switch-when="parsed" cellpadding="0" cellspacing="0" border="0" style="overflow:auto;">
+					<tbody>
+						<tr><th>Tag</th><th>Description</th><th>Value</th></tr>
+						<tr ng-repeat="tag in parsedFixMsg" class="fixMessageIndentLevel{{tag.level}}">
+							<td style="text-align:left;">{{tag.number}}</td>
+							<td style="text-align:left;">{{tag.description}}</td>
+							<td style="text-align:left;">{{tag.value}} <span ng-if="tag.explanation">({{tag.explanation}})</span></td>
+						</tr>
+					</tbody>
+				</table>
+	             -->
+	           				
+            </div>
+            <p style="margin-left: auto; width: 230px;">FIX message formatting:  <a ng-click="setFixMsgFormat('raw');" ng-class="{'edit':(fixMsgFormat=='raw'),'link-style':(fixMsgFormat!='raw')}" ng-disabled="fixMsgFormat=='none'">Raw</a>  |  <a ng-click="setFixMsgFormat('parsed');" ng-class="{'edit':(fixMsgFormat=='parsed'),'link-style':(fixMsgFormat!='parsed')}" ng-disabled="fixMsgFormat=='none'">Parsed</a></p>          
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

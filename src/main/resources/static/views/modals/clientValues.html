@@ -1,0 +1,41 @@
+<div id="linkTrades" class="modal" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Client Values</h4><br/>
+                <div class="datatableSummaryWrapper" ng-bind-html="brokerTradeSummary" />
+            </div>
+            <div class="modal-body" style="min-width:755px;height:210px;">
+                <div style="width:100%;text-align:center;">
+                    <div style="display:inline-block;">
+                        <p class="fee-title">
+                            {{title}}
+                        </p>
+                        <table cellspacing="0">
+                            <tr class="heading">
+                                <th>Type</th>
+                                <th>Manager</th>
+                                <th>Broker</th>
+                                <th>Delta</th>
+                            </tr>
+                            <tr ng-repeat="row in rowData" ng-class="{deltaRow: deltaToFloat(row.delta) > 0}">
+                                <td class="right bold">{{row.type}}</td>
+                                <td class="right">{{row.manager}}</td>
+                                <td class="right">{{row.broker}}</td>
+                                <td class="right">{{row.delta}}</td>
+                            </tr>
+                            <tr>
+                                <th class="total">Total</th>
+                                <td>{{rowTotalData.manager}}</td>
+                                <td>{{rowTotalData.broker}}</td>
+                                <td>{{rowTotalData.delta}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

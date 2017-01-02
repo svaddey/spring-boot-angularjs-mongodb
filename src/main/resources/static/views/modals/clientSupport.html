@@ -1,0 +1,28 @@
+<div id="clientSupport" class="modal" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Client Support</h4>
+            </div>
+            <div class="modal-body">
+                <div style="width:100%;text-align:center;font-size:14px;margin:15px 0px">
+                   <span ng-show="manualURL">
+                	<b>For the FIXAffirm User Manual, please click here</b><br/>
+                	<br ng-show="manualURL"/>
+                	<a ng-href="{{manualURL}}" target="_blank" class="link-style">FIXAffirm User Manual</a><br/>
+                	<br ng-show="manualURL"/>
+                 </span>
+                	<b>For support, please contact:</b><br/>
+                	<br/>
+                	1-844-FIX-AFRM<br/>
+                	<br/>
+                	<a href="mailto:client_support@ao-fs.com" target="_blank" class="link-style">client_support@ao-fs.com</a>
+                </div>
+            <div class="modalActionButtons">
+                <button class="btn green" id="cancelBtn" ng-click="close();">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

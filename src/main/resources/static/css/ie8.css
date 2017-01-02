@@ -1,0 +1,38 @@
+/* IE8 size differences */
+.ilb .select-filter select{
+	height: 20px !important;
+}
+
+/* IE8 specific object rotation */
+.alert-popup .arrow {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476)"; /* IE8 */
+}
+.alert-popup .arrow {
+	top: 15px;
+	left: -10px;
+}
+.alert-popup.small .arrow {
+	top: 5px;
+	left: -7px
+}
+
+/* IE8 color fixes */
+.popup-message.error {
+    background: rgb(221, 131, 128);
+    border: rgb(195, 116, 113);
+  	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+}
+.popup-message.warning {
+    background: rgb(255, 248, 145);
+    border: rgb(221, 215, 125);
+  	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+}
+.popup-message.success {
+    background: rgb(213, 255, 199);
+    border: rgb(180, 216, 169);
+  	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+}
+.popup-message button {
+    background: rgb(100,100,100);
+  	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+}

@@ -1,0 +1,27 @@
+
+<div class="g12" style=" padding-top: 7px;">
+    <div>
+        <ul class="nav nav-tabs">
+            <li ng-click="page='search-trades'" ng-class="page=='search-trades'?'active':''"><a>Broker Trades</a></li>
+            <li ng-click="page='client-trades'" ng-class="page=='client-trades'?'active':''"><a>Client Trades</a></li>
+        </ul>
+    </div>
+
+
+</div>
+
+<div class="g12">
+    <div ng-switch on="page">
+        <div ng-switch-when="search-trades">
+            <trade-table-tab type="search" table-data-source="searchTradeTableDataSource" enabled-actions="enabledSearchTradeActions"
+                    enabled-filters="enabledSearchTradeFilters" filter-values="searchTradeFilterValues" enabled-block-columns="enabledSearchTradeColumns"
+                    enabled-alloc-columns="enabledSearchTradeAllocColumns" enabled-alloc-actions="enabledSearchTradeAllocActions" block-table-data="searchTabBlocks"></trade-table-tab>
+        </div>
+        <div ng-switch-when="client-trades">
+            <trade-table-tab type="client" table-data-source="clientTradeTableDataSource" enabled-actions="enabledClientTradeActions"
+                    enabled-filters="enabledClientTradeFilters" filter-values="clientTradeFilterValues" enabled-block-columns="enabledClientTradeColumns" 
+                    enabled-alloc-columns="enabledClientTradeAllocColumns" enabled-alloc-actions="enabledClientTradeAllocActions" block-table-data="clientTabBlocks"></trade-table-tab>
+        </div>
+    </div>
+</div>
+

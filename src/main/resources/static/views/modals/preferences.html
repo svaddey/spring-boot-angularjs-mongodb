@@ -1,0 +1,123 @@
+<div id="preferences" class="modal modal-md user-input-modal" style="width: 670px;" tabindex="-1"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Change Password</h4>
+			</div>
+			<div class="modal-body">
+				<span class="required-field" style="float: right; margin-right: 20px;"> * Required </span>
+				<form name="userDetailsForm">
+					<!-- 
+	          <div class="g5">
+	            <h3 class="subheading">User Information</h3>
+	            <div>
+	              <label for="firstName">First Name:</label>
+	              <input type="text" name="firstName">
+	             </div>
+	             <div>
+	              <label for="lastName">Last Name:</label>
+	              <input type="text" name="lastName">
+	             </div>
+	             <div>
+	              <label for="company">Company:</label>
+	              <input type="text" name="company">
+	             </div>
+	             <div>
+	              <label for="phone">Phone:</label>
+	              <input type="text" name="phone">
+	             </div>
+	             <div>
+	              <label for="email">email:</label>
+	              <input type="email" name="email">
+	             </div>
+	          </div>
+	          <div class="g3">
+	            <h3 class="subheading">Date/Time Format</h3>
+	            <button type="button" class="ui-multiselect ui-widget ui-state-default ui-corner-all blueButton" aria-haspopup="true" tabindex="0" style="width: 223px;"><span class="ui-icon right-icon ui-icon-triangle-1-s"></span><span>Time Zone</span></button><br/><br/>
+	
+	            <input type="radio" name="clock" value="12hour" id="clock12hour"><label for="clock12hour">12-hour Clock</label><br/>
+	            <input type="radio" name="clock" value="24hour" id="clock24hour"><label for="clock24hour">24-hour Clock</label><br/><br/>
+	
+	            <input type="radio" name="dateFormat" value="dateDDMMYYYY" id="dateDDMMYYYY"><label for="dateDDMMYYYY">DD/MM/YYYY</label><br/>
+	            <input type="radio" name="dateFormat" value="dateMMDDYYYY" id="dateMMDDYYYY"><label for="dateMMDDYYYY">MM/DD/YYYY</label>
+	          </div>
+	          <div class="g4">
+	            <h3 class="subheading">Session Timeout</h3>
+	            <button type="button" class="ui-multiselect ui-widget ui-state-default ui-corner-all blueButton" aria-haspopup="true" tabindex="0" style="width: 223px;"><span class="ui-icon right-icon ui-icon-triangle-1-s"></span><span>Timeout</span></button>
+	
+	            <h3 class="subheading">Reset Alerts</h3>
+	            <button type="button" class="btn red">Reset</button>
+	          </div>
+	          <div class="clear"></div>
+	          -->
+	          	</form>
+				<form name="passwordForm" id="changePassword" class="g12">
+					<h3 class="subheading" style="margin-top: 0px;">Change Password</h3>
+					<div class="row-container">
+						<label for="oldPassword" style="width: 155px;">Old Password:<span class="required-field">*</span>
+						</label>
+						<div class="input-and-message-container">
+							<div class="row-item input-container">
+								<input required-input-field require-enforced="showAllErrors.passwordForm" type="password" name="oldPassword" ng-model="preferences.oldPassword" placeholder="Enter existing password" ng-change="passwordForm.oldPassword.$setValidity('correct',true)">
+							</div>
+							<div class="user-alert-container-sm">
+								<div class="alert-popup small" ng-show="passwordForm.oldPassword.$invalid && showAllErrors.passwordForm">
+									<div class="arrow"></div>
+								<span ng-show="passwordForm.oldPassword.$error.required">{{fieldBlankMessage}}</span>
+								<span ng-show="passwordForm.oldPassword.$error.correct">{{passwordInvalidMessage.correct}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-container">
+					<label for="newPassword" style="width: 155px;">New Password:<span class="required-field">*</span>
+					</label>
+					<div class="input-and-message-container">
+						<div class="row-item input-container">
+							<input password-input-field type="password" name="newPassword" ng-model="preferences.newPassword" minlength="8" maxlength="100" placeholder="Enter new password">
+						</div>
+						<div class="user-alert-container-md" id="newPasswordAlert">
+							<div class="alert-popup" ng-show="passwordForm.newPassword.$invalid && (passwordForm.newPassword.$dirty || showAllErrors.passwordForm)">
+								<div class="arrow"></div>
+								<span ng-show="passwordForm.newPassword.$error.required">{{fieldBlankMessage}}</span>
+								<span ng-show="!passwordForm.newPassword.$error.required && passwordForm.newPassword.$error.minlength">{{passwordInvalidMessage.minlength}}</span>
+								<span ng-show="!passwordForm.newPassword.$error.required && passwordForm.newPassword.$error.maxlength">{{maxlengthInvalidMessage}}</span>
+								<span ng-show="!passwordForm.newPassword.$error.required && passwordForm.newPassword.$error.caseDiverse">{{passwordInvalidMessage.caseDiverse}}</span>
+								<span ng-show="!passwordForm.newPassword.$error.required && passwordForm.newPassword.$error.specChars">{{passwordInvalidMessage.specChars}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-container">
+					<label for="confirmPassword" style="width: 155px;">Confirm Password:<span
+						class="required-field">*</span>
+					</label>
+					<div class="input-and-message-container">
+						<div class="row-item input-container">
+							<input confirm-password-field type="password" name="confirmPassword" ng-model="preferences.confirmPassword" original-password="preferences.newPassword" placeholder="Confirm new password">
+						</div>
+						<div class="user-alert-container">
+							<div class="user-alert-container-sm" id="confirmPasswordAlert">
+								<div class="alert-popup small" ng-show="passwordForm.confirmPassword.$invalid && (passwordForm.confirmPassword.$dirty || showAllErrors.passwordForm)">
+									<div class="arrow"></div>
+									<span ng-show="passwordForm.confirmPassword.$error.confirmPassword">{{confirmInvalidMessage}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-init="setPasswordForm(passwordForm);" />
+				</form>
+				<div class="modalActionButtons">
+					<button type="submit" class="btn blue small-text" value="submit" ng-click="updatePreferences()">Save</button>
+					<button type="button" class="btn grey small-text" data-dismiss="modal" aria-hidden="true" ng-click="close()">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>

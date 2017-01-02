@@ -1,0 +1,28 @@
+<div class="g12">
+    <h2>Administrator Dashboard</h2>
+</div>
+<div class="g12 white-top admin-nav">
+    <a href="#/admin/changeuser" id="changeUserViewTab" ng-class="{selected:changeUserTabActive}" ng-click="setTabActive()">
+        <span class="btn btn-icon blue btn-large user"></span>
+        Users
+    </a>
+    <!-- 
+    <a href="#/admin/numericsettings">
+        <span class="btn btn-icon gold btn-large precision"></span>
+        Decimal Precision
+    </a>
+    -->
+</div>
+<div class="g12 admin-content">
+    <div ng-switch on="page">
+        <div ng-switch-when="numericsettings">
+            <admin-numericsettings></admin-numericsettings>
+        </div>
+        <div ng-switch-when="fixconnections">
+            <admin-fixconnections></admin-fixconnections>
+        </div>
+        <div ng-switch-when="changeuser">
+            <admin-changeuser></admin-changeuser>
+        </div>
+    </ng-switch>
+</div>

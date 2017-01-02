@@ -1,0 +1,38 @@
+.dataTables_wrapper input {
+    border: 0px;
+    padding: 0px;
+    /*width: auto !important;*/
+
+}
+#forceMatchBtn{
+
+}
+
+.ft-button-group{
+    line-height: 0px;
+}
+::selection {
+    background: #333;
+    color: #ffffff;
+    text-shadow: none;
+    line-height: 10px;
+}
+
+form#filterform input{
+    padding:0px;
+    font-size: ;
+}
+form#filterform p{
+    height: 24px;
+}
+
+p#tradeDateFilter input{
+    height: 24px;
+}
+
+td{
+    font-size: 11px;
+}
+div#blockTable_wrapper th{
+    font-size: 12px;
+}

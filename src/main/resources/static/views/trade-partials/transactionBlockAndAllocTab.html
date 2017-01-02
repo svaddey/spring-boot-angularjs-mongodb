@@ -1,0 +1,96 @@
+<div>
+	<form id="filterform" action="" class="filterForm angular_ui" method="post" autocomplete="off" ng-init="initFilter()">
+
+		<div id="tbl-header-wrap">
+
+
+			<div class="tbl-filter-container">
+				<date-range-filter from-field-name="filter.tradeDateFrom" to-field-name="filter.tradeDateTo"
+					from-field-id="tradeDateFromFilter" to-field-id="tradeDateToFilter" from-field-init="savedFilters.tradeDateFrom"
+					to-field-init="savedFilters.tradeDateTo" from-field-label="Trade Date:" to-field-label="To:" from-last-day="1"
+					to-last-day="1" ng-show="isFilterEnabled('tradeDate');"></date-range-filter>
+				<input-and-type-filter input-field-name="filter.securityID" type-field-name="filter.securityIDSource"
+					field-id="securityIDFilter" input-field-init="savedFilters.securityID"
+					type-field-init="savedFilters.securityIDSource" field-label="Sec ID:" ng-show="isFilterEnabled('securityID');"
+					option-list="filterValues.secIDSources" default-type='4'></input-and-type-filter>
+				<input-filter field-name="filter.client" field-id="clientFilter" field-init="savedFilters.client"
+					field-label="Client:" ng-show="isFilterEnabled('client');"></input-filter>
+				<multi-select-filter field-name="filter.state" field-id="stateFilter" field-init="savedFilters.state"
+					field-label="Status:" option-list="filterValues.status" classes="ui-multiselect-status"
+					ng-show="isFilterEnabled('state');"></multi-select-filter>
+				<div class="ft-button-group ilb">
+					<button ng-show="isActionEnabled('search')" class="btn blue btn-icon search" id="searchBtn" ng-click="search()">Search</button>
+					<button ng-show="isActionEnabled('link')" class="btn gold btn-icon link" disabled id="linkTradeBtn"
+						ng-click="linkTrade()">Link</button>
+					<button ng-show="isActionEnabled('reject')" class="btn red btn-icon reject" disabled id="rejectTradesBtn"
+						ng-click="rejectTrades()">Reject</button>
+					<button dropdown-button ng-show="isActionEnabled('export')" class="btn btn-icon green export" id="exportBtn"
+						option-list="exportOptions" option-click-fn="startExport(exporttype)">Export</button>
+				</div>
+				<div class="filter-separator" />
+				<br style="line-height: 42px;" />
+				<input-filter field-name="filter.entity" field-id="entityFilter" field-init="savedFilters.entity"
+					field-label="Entity:" ng-show="isFilterEnabled('entity');"></input-filter>
+				<input-range-filter from-field-name="filter.avgPxFrom" from-field-id="avgPxFromFilter"
+					from-field-init="savedFilters.avgPxFrom" from-field-label="Avg. Px:" to-field-name="filter.avgPxTo"
+					to-field-id="avgPxToFilter" to-field-init="savedFilters.avgPxTo" to-field-label="To:"
+					ng-show="isFilterEnabled('avgPx');"></input-range-filter>
+				<input-range-filter from-field-name="filter.qtyFrom" from-field-id="qtyFromFilter"
+					from-field-init="savedFilters.qtyFrom" from-field-label="Qty:" to-field-name="filter.qtyTo"
+					to-field-id="qtyToFilter" to-field-init="savedFilters.qtyTo" to-field-label="To:"
+					ng-show="isFilterEnabled('quantity');"></input-range-filter>
+				<input-filter field-name="filter.currency" field-id="currencyFilter" field-init="savedFilters.currency"
+					field-label="CCY:" ng-show="isFilterEnabled('currency');"></input-filter>
+				<input-filter field-name="filter.aofsAllocID" field-id="allocIDFilter" field-init="savedFilters.aofsAllocID"
+					field-label="Alloc ID:" ng-show="isFilterEnabled('allocID');"></input-filter>
+				<multi-select-filter field-name="filter.side" field-id="sideFilter" field-init="savedFilters.side"
+					field-label="Side:" option-list="filterValues.sides" classes="ui-multiselect-side"
+					ng-show="isFilterEnabled('side');"></multi-select-filter>
+				<date-range-filter from-field-name="filter.settlDateFrom" to-field-name="filter.settlDateTo"
+					from-field-id="settlDateFromFilter" to-field-id="settlDateToFilter" from-field-init="savedFilters.settlDateFrom"
+					to-field-init="savedFilters.settlDateTo" from-field-label="Settle Date:" to-field-label="To:"
+					ng-show="isFilterEnabled('settlDate');"></date-range-filter>
+				<div class="counterDisplay">
+					<div ng-show="blocksDisplayed==1">{{blocksDisplayed}} result</div>
+					<div ng-show="blocksDisplayed<maxBlocksDisplayed&&blocksDisplayed!=1">{{blocksDisplayed}} results</div>
+					<div ng-show="blocksDisplayed>=maxBlocksDisplayed">{{maxBlocksDisplayed}} of {{maxBlocksDisplayed}}+ results</div>
+					<a class="link-style" ng-click="clearFilters()">Reset Filters</a>
+				</div>
+				<div class="filter-separator" />
+			</div>
+		</div>
+	</form>
+
+	<!-- end filter -->
+
+	<div id="mainTableWrapper" style="width: 100%; max-width: 1160px;">
+		<transaction-datatable table-id="blockTable" enabled-columns="enabledBlockColumns" initial-data-set="savedDataset"
+			resizeable="true" row-callback-function="rowCallbackForBlockTable(row, datatable)"
+			header-click-sort="resort(eventObj)" table-scroll-height="380" initial-sort="sortParams"
+			table-template="blockTable.html" scroll-x="true" show-empty-message="blockTableEmptyMessageEnabled"
+			empty-message="NO_RESULTS_FOUND" resize-in-window="false"> </transaction-datatable>
+	</div>
+
+	<div id="detailsPanelWrapper" class="detailsPanel">
+		<div ng-if="BlockSelected" class="g12" style="width: 1072px;">
+			<div id="accTable_summaryWrapper" class="datatableSummaryWrapper" style="line-height: 38px;">
+				<div ng-bind-html="allocHeaderPanel" compile-template style="display: inline-block; padding-left: 15px;" />
+				<div style="display: inline-block; float: right; padding-right: 5px; margin-top: 1px; line-height: 0px;">
+					<button id="eventsLogBtn" ng-show="isAllocActionEnabled('events')" class="btn blue btn-icon list viewEventsLog" ng-click="OpenEventsLog()"
+						style="height: 32px;">View Events Log</button>
+					<button id="clearSelectedBlockBtn" class="btn red btn-icon close" ng-click="clearSelectedBlock()"
+						style="height: 32px;">Close</button>
+				</div>
+			</div>
+			<div style="width: 100%; height: 150px;">
+				<div ng-if="allocTableReadyFlag" style="display: inline-block; vertical-align: top; width: 524px;">
+					<datatable-instance table-id="accTable" table-structure="allocTableStructure" table-data="accTableData"
+						row-select-function="rowCallbackForAllocTable(row, datatable)"></datatable-instance>
+				</div>
+				<div ng-if="AllocSelected" style="display: inline-block; vertical-align: top; width: 536px; margin-left: 9px;float:right;">
+					<datatable-instance table-id="detailTable" table-structure="detailTableStructure"></datatable-instance>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

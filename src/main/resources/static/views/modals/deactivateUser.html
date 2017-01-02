@@ -1,0 +1,21 @@
+<div id="deactivateUser" class="modal modal-sm user-input-modal" tabindex="-1" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header red-warning">
+				<h4 class="modal-title text-center">Deactivate User</h4>
+			</div>
+			<div class="modal-body">
+				<p class="text-center confirm-text">Are you sure you want to
+					deactivate {{user.firstName}} {{user.lastName}}?</p>
+				<div class="modalActionButtons">
+					<button type="button" class="btn blue small-text"
+						ng-click="confirm()">Confirm</button>
+					<button type="button" class="btn grey small-text"
+						data-dismiss="modal" aria-hidden="true" ng-click="close(false)">Cancel</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

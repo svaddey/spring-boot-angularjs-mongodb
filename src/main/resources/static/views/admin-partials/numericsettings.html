@@ -1,0 +1,25 @@
+<form name="form" class="admin-form" novalidate>
+    <fieldset>
+        <p class="admin-label">Decimal Precision Display<p>
+
+        <div>
+            <input type="checkbox" class="curinp3 g5" ng-model="numeric.separator" name="nSeparator"/>
+            <label for="nSeparator">Thousands Separator</label>
+        </div>
+
+        <div>
+            <input type="text" name="nPriceprecision" class="curinp3 g1" ng-model="numeric.price_precision" ng-init="numeric.price_precision='2'" required />
+            <label for="nPriceprecision">Price precision (decimal places)<label>
+        </div>
+
+        <div>
+            <input name="nMoneyprecision" type="text" class="curinp3 g1" value="4" ng-model="numeric.money_precision" ng-init="numeric.money_precision='4'" required />
+            <label for="nMoneyprecision">Money precision (decimal places)</label>
+        </div>
+
+        <div class="buttons">
+            <button class="btn blue" ng-click="update(numeric)" ng-disabled="form.$invalid || isUnchanged(numeric)">Save</button>
+            <button class="btn grey" ng-click="go('/admin')">Cancel</button>
+        </div>
+    </fieldset>
+</form>

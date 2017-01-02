@@ -1,0 +1,28 @@
+<div class="g12">
+    <form name="form" class="css-form" novalidate>
+        <fieldset>
+            <label>FIX Connection</label>
+            <section>
+                <label>Name (Client name)</label>
+                <div>
+                    <input type="text" class="curinp3 g5" ng-model="fix.name" name="fName" />
+                </div>
+            </section>
+            <section>
+                <label>Alias (Client alias)</label>
+                <div>
+                    <input type="text" class="curinp3 g5" ng-model="fix.alias" name="fAlias"/>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <button ng-click="update(fix)" ng-disabled="form.$invalid || isUnchanged(fix)">Submit</button>
+                    <button ng-click="reset()" ng-disabled="isUnchanged(fix)">Clear</button>
+                </div>
+            </section>
+        </fieldset>
+    </form>
+</div>
+
+
+

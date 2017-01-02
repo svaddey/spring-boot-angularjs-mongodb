@@ -1,0 +1,60 @@
+<div id="editUser" class="modal user-input-modal" style="width: 650px;" tabindex="-1" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{ myTitle() }}</h4>
+			</div>
+			<div class="modal-body">
+				<form name="editUserForm" style="width: 615px;">
+					<span class="required-field" style="float: right; margin-right: 20px;"> * Required </span>
+					<div class="row-container">
+						<label for="firstname" style="width: 165px;">First Name:<span class="required-field">*</span></label>
+						<div class="input-and-message-container">
+							<div class="row-item input-container">
+								<input name-input-field type="text" name="firstname" ng-model="newUserDetails.firstname" ng-maxlength="100">
+							</div>
+							<div class="user-alert-container-sm">
+								<div class="alert-popup small" ng-show="editUserForm.firstname.$invalid && (editUserForm.firstname.$dirty || showAllErrors)">
+									<div class="arrow"></div>
+									<span ng-show="editUserForm.firstname.$error.required">{{fieldBlankMessage}}</span>
+									<span ng-show="!editUserForm.firstname.$error.required && editUserForm.firstname.$error.maxlength">{{maxlengthInvalidMessage}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-container">
+						<label for="lastname" style="width: 165px;">Last Name:<span class="required-field">*</span></label>
+						<div class="input-and-message-container">
+							<div class="row-item input-container">
+								<input name-input-field type="text" name="lastname" ng-model="newUserDetails.lastname" ng-maxlength="100">
+							</div>
+							<div class="user-alert-container-sm">
+								<div class="alert-popup small" ng-show="editUserForm.lastname.$invalid && (editUserForm.lastname.$dirty || showAllErrors)">
+									<div class="arrow"></div>
+									<span ng-show="editUserForm.lastname.$error.required">{{fieldBlankMessage}}</span>
+									<span ng-show="!editUserForm.lastname.$error.required && editUserForm.lastname.$error.maxlength">{{maxlengthInvalidMessage}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row-container">
+						<label for="accessLevel" style="width: 165px;">Access level:<span class="required-field">*</span></label>
+						<div class="row-item">
+							<select ng-model="newUserDetails.roleid" style="width: 180px; margin-top: 7px;"
+								ng-options="r.value as r.name for r in roleOptions"
+								class="ui-multiselect ui-widget ui-state-default ui-corner-all" aria-haspopup="true" style="width: 223px;" required></select>
+						</div>
+					</div>
+					<div class="modalActionButtons">
+						<button type="button" class="btn blue small-text" ng-click="updateUser()">Save</button>
+						<button type="button" class="btn grey small-text" data-dismiss="modal" aria-hidden="true" ng-click="close(false)">Cancel</button>
+					</div>
+					<div ng-init="setForm(editUserForm);" />
+				</form>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

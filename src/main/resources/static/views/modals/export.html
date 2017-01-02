@@ -1,0 +1,27 @@
+<div id="exportData" class="modal" tabindex="-1" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Data Export</h4>
+            </div>
+            <div class="modal-body" style="min-width:755px;height:250px;">
+                <div style="margin: 5px 10px;font-size: 13px;">Export file name:</div>
+                <div>
+                    <input type="text" style="width:350px;margin: 0px 10px;"></input><button type="button" class="btn blue">Choose location</button>
+                </div>
+                <div style="margin: 5px 10px;font-size: 13px;">
+                    Export as file type: <select>
+                        <option>Excel (.xls)</option>
+                        <option>CSV</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modalActionButtons">
+                <button class="btn green btn-icon export" id="exportBtn" ng-click="startExport();">Export</button>
+                <button class="btn grey" id="cancelBtn" ng-click="close();">Cancel</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

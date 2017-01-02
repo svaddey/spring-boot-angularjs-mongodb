@@ -1,0 +1,64 @@
+.ft-button-group{
+    line-height: 0px;
+}
+::selection {
+    background: #333;
+    color: #ffffff;
+    text-shadow: none;
+    line-height: 10px;
+}
+
+form#filterform p{
+    height: 24px;
+}
+
+span.filter_date_range input.date_range_filter{
+    height: 24px;
+    width: 70px;
+}
+
+td{
+    font-size: 11px;
+}
+div#blockTable_wrapper th{
+    font-size: 11px;
+}
+
+input[type=checkbox]{
+    border-radius: 0px;
+}
+/*
+    Note: the problem in IE10 only occurs when using a border-width of 1px.
+    A border-width of 1px will result in 2px when using border-collapse:collapse; in IE10.
+    When using a higher border-width, the result will be normal
+*/
+table{
+    border-left:1px solid #a5a5a5;
+    border-top:1px solid #a5a5a5;
+}
+table tr{
+    border:none;
+    border-collapse: collapse;
+
+}
+
+table td, table th{
+    border:none;
+    /*border-right:1px solid #292527;
+    border-bottom:1px solid #292527;*/
+
+    border-right:1px solid #a5a5a5;
+    border-bottom:1px solid #a5a5a5;
+
+    font-weight:lighter;
+
+}
+
+html[data-useragent*='MSIE 10.0'] table th{
+    font-size: 10px;
+}
+
+.text_filter::-ms-clear {
+    display: none;
+}
+

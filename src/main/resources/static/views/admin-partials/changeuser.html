@@ -1,0 +1,52 @@
+<div class="g12">
+    <form  name="form" class="css-form" novalidate>
+        <fieldset>
+            <section>
+                <div class="searchable">
+                    <div style="width:1200px;">
+                        <div class="admin-label">
+                        <div>
+                        <button class="btn btn-icon add-user blue" ng-click="createUser()">Create User</button>
+                        <button ng-disabled="!selectedUser" class="btn blue" ng-click="editUser()">Edit</button>
+                        <button ng-disabled="!selectedUser" class="btn blue" ng-click="resetUserPassword()">Reset Password</button>
+                        <button ng-disabled="!selectedUser" class="btn blue" ng-click="deactivateUser()">Deactivate</button>
+                        <div style="float:right;line-height:36px;font-size:12px;">Search:<input id="userTableFilter" style="width:200px;"/></div>
+                        </div>
+                        </div>
+<!--                         <input id="searchText" type="search" placeholder="Search users..." ng-model="searchText" style="width: 90%; height: 30px" /> -->                        
+ 							
+ 							<datatable-instance table-id="userTable" table-data="users" table-structure="userTableStructure" row-select-function="selectUser(row)">
+ 							</datatable-instance>
+ 							
+ 							<!-- table class="users-table">
+                            <tr>
+                            	<th class="blank"></th>
+                                <th>Email</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Access level</th>
+                                <th>Active</th>
+                                <th>Created</th>
+                                <th>Modified</th>
+                            </tr>
+                            <tr ng-repeat="u in users | filter:searchText">
+                                <td class="icons">
+                                    <button class="btn btn-icon key no-hover-bg" ng-click="changeUserPassword(u)" tooltip-placement="right" tooltip="Change this user's password"></button>
+                                    <button class="btn btn-icon pencil no-hover-bg" ng-click="editUser(u)" tooltip-placement="right" tooltip="Edit this user's details"></button>
+                                    <button class="btn btn-icon small-cancel no-hover-bg" ng-click="deactivateUser(u)" tooltip-placement="right" tooltip="Deactivate user"></button>
+                                </td>
+                                <td>{{u.username}}</td>
+                                <td>{{u.firstName}}</td>
+                                <td>{{u.lastName}}</td>
+                                <td>{{u.role}}</td>
+                                <td>{{!u.isDeleted  ? "Yes" : "No"}}</td>
+                                <td>{{u.createdTimestamp}}</td>
+                                <td>{{u.modifiedTimestamp}}</td>
+                            </tr>
+                        </table-->
+                    </div>
+                </div>
+            </section>
+        </fieldset>
+    </form>
+</div>

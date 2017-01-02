@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-us" ng-app="interfaceApp">
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=9">-->
+    <!--  <base href="/alpha-omega-base/">  -->
+    <title>Alpha Omega Financial Systems</title>
+    <script type="text/javascript">
+        var b = document.documentElement;
+        b.setAttribute('data-useragent', navigator.userAgent);
+        b.setAttribute('data-platform', navigator.platform );
+    </script>
+    
+    <!-- Google Font and style definitions -->
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <link rel="stylesheet" type="text/css" href="js/datatables/datatables.bootstrap.css">
+    <link rel="stylesheet" href="js/libs/angular-ui/assets/tabs.css">
+    <link rel="stylesheet" href="css/light/theme.css" id="themestyle">
+    <link rel="stylesheet" href="css/custom_style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <script type="text/javascript">
+        window.onbeforeunload = function(event)
+        {
+        	return /login$/.test(location.href) ? null : "Please use application navigation. Using browser keys would log you out!!";
+        };
+    </script>
+
+    <!-- Apple iOS and Android stuff - don't remove! -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+    <!-- Use Google CDN for jQuery -->
+
+    <script src="js/libs/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+    <!-- DEBUG -->
+    <script type="text/javascript" src="js/libs/stacktrace.js"></script>
+    <!-- DataTable  -->
+    <script src="js/libs/datatables/1.10.2/jquery.dataTables.js"></script>
+    <script src="js/libs/datatables/scroller/1.2.2/dataTables.scroller.js"></script>
+    <script src="js/libs/jquery.ba-throttle-debounce.js"></script>
+	<script src="js/libs/jquery-ui/1.11.0/jquery-ui.min.js"></script>
+	<script src="js/extra_scripts.js"></script>
+<style>
+		::selection {
+background: #333;
+color: #ffffff;
+text-shadow: none;
+}
+	</style>
+</head>
+<body id="pageBody" ng-controller="MainCtrl" style="min-width:1243px;">
+<header>
+    <div id="logo" data-access-level="accessLevels.user" style="display: none;">
+        <a href="/">Alpha Omega Financial Systems</a>
+    </div>
+    <div id="header" data-access-level="accessLevels.user" style="display: none;">
+        <div style=" padding-top: 29px; float:left;">
+            <ul class="nav nav-tabs">
+                <li ng-class="toggleActive('/transactions')"><a href="tickets" >Create Ticket</a></li>
+                <li ng-show="entitlement.manageUser" ng-class="toggleActive('/admin')"><a href="#/admin">Admin</a></li>
+            </ul>
+        </div>
+        <div class="acc_info" data-access-level="accessLevels.user"  style="display: none;">
+            <a ng-click="editPreferences()">{{user.firstName}} {{user.lastName}}<span id="settings-gear-icon" style="margin-left:3px;margin-right:3px;"></span></a>| <a ng-click="clientSupport()">Support</a> | <a ng-click="logout()">Logout</a>
+        </div>
+
+    </div>
+</header>
+<section id="content" ng-class="{true:'allwhite', false:'allgray'}[isLoged]">
+    <ng-view></ng-view>
+</section>
+<div id="dropdownOptionBox" style="display: none;"></div>
+<div id="loading-indicator" loader><img src="img/ajax-loader.gif" /></div>
+<!-- end div #content -->
+<footer>
+© 2017 IMS
+</footer>
+
+<!-- Angular.js -->
+<script src="js/libs/underscore/1.6.0/underscore-min.js"></script>
+<script src="js/libs/angularjs/1.2.19/angular.js"></script>
+<script src="js/libs/angularjs/1.2.19/angular-sanitize.js"></script>
+<script src="js/libs/angularjs/1.2.19/angular-route.min.js"></script>
+<script src="js/libs/jquery/multiselect/1.14pre/jquery.multiselect.js"></script>
+<script src="js/libs/idle-timer/0.9.2/idle-timer.min.js"></script>
+
+<script src="js/libs/angular-ui/ui-bootstrap-tpls-0.11.0.min.js"></script>
+<script src="js/libs/angularjs/1.2.19/angular-cookies.min.js"></script>
+
+<script src="js/directives/datatable.directives.js"></script>
+<script src="js/datatables/datatables.bootstrap.js"></script>
+<script src="js/directives/misc.directives.js"></script>
+<script src="js/directives/input.directives.js"></script>
+<script src="js/directives/filter.directives.js"></script>
+<script src="js/directives/trade.directives.js"></script>
+<script src="js/directives/admin.directives.js"></script>
+
+<script src="js/routingConfig.js"></script>
+<script src="js/main.js"></script>
+<script src="js/subtabControllers.js"></script>
+<script src="js/modalControllers.js"></script>
+<script src="js/services.js"></script>
+<script src="js/directives/loadingindicator.js"></script>
+
+</body>
+</html>
